@@ -3,12 +3,12 @@ class TagsController < ApplicationController
 
   def index
     tags = Tag.all
-    render json: tags
+    render json: tags, each_serializer: TagSerializer
   end
 
   def show
     tag = Tag.find(params[:id])
-    render json: tag
+    render json: tag, serializer: TagSerializer
   end
 
   private
@@ -16,5 +16,4 @@ class TagsController < ApplicationController
   def render_not_found_response
     render json: { error: "Tag not found" }, status: :not_found
   end
-
 end
